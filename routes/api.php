@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    //routes
+    
 });
+
+Route::middleware(['auth:sanctum', 'role:driver'])->prefix('driver')->group(function () {
+    // Driver dashboard routes here
+});
+
+Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
+    // Admin dashboard routes here
+});
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/CreateAccount', [AuthController::class, 'CreateAccount']);
