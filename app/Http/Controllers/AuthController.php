@@ -16,13 +16,13 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
+            'password' => 'required|confirmed|string|min:6',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'zipcode' => 'required|string|max:20',
             'contact_number' => 'required|string|max:20',
-            'role' => 'required|string|in:user,driver,admin',
+            // 'role' => 'required|string|in:user,driver,admin',
         ]);
 
             $user = User::create([
@@ -34,7 +34,7 @@ class AuthController extends Controller
                 'address' => $request->address,
                 'zipcode' => $request->zipcode,
                 'contact_number' => $request->contact_number,
-                'role' => $request->role,
+                // 'role' => $request->role,
             ]);
 
             // Create and assign an API token to the newly registered user

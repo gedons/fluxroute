@@ -23,13 +23,13 @@ Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
     
 });
 
-Route::middleware(['auth:sanctum', 'role:driver'])->prefix('driver')->group(function () {
-    // Driver dashboard routes here
-});
+// Route::middleware(['auth:sanctum', 'role:driver'])->prefix('driver')->group(function () {
+//     // Driver dashboard routes here
+// });
 
-Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
-    // Admin dashboard routes here
-});
+// Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
+//     // Admin dashboard routes here
+// });
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/CreateAccount', [AuthController::class, 'CreateAccount']);
