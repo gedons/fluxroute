@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('role')->default('user'); // Default role is 'user'
             $table->string('country');
             $table->string('state');
             $table->string('address');
             $table->string('zipcode');
-            $table->string('contact_number');
+            $table->string('contact_number');                       
+            $table->string('driver_license_number')->nullable();
+            $table->string('vehicle_info')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

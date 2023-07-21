@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -26,9 +27,17 @@ class User extends Authenticatable
         'address',
         'zipcode',
         'contact_number',
-        'role'
+        'role',        
+        'driver_license_number',
+        'vehicle_info',
     ];
 
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *

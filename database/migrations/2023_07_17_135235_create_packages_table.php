@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('driver_id')->nullable();
-            $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->string('image', 255)->nullable();
+            $table->string('title', 1000);
             $table->string('tracking_number');
             $table->string('delivery_address');
-            $table->string('delivery_status');
+            $table->string('delivery_status')->default('pending'); // Default status is 'Pending
             $table->string('special_instructions');
             $table->string('payment_reference')->nullable();
             $table->timestamps();

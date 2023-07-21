@@ -15,11 +15,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
     //routes
+    Route::resource('/shipment', \App\Http\Controllers\PackageController::class);
+    Route::resource('/driver', \App\Http\Controllers\DriverController::class);
     
 });
 
