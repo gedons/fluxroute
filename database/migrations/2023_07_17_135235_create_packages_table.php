@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');            
             $table->string('image', 255)->nullable();
             $table->string('title', 1000);
+            $table->string('driver_name', 255)->nullable();
             $table->string('tracking_number');
             $table->string('delivery_address');
             $table->string('delivery_status')->default('pending'); // Default status is 'Pending
             $table->string('special_instructions');
-            $table->string('payment_reference')->nullable();
+            $table->string('payment_reference')->nullable(); // paystack Api will be implemeted
             $table->timestamps();
         });
     }

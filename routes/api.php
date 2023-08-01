@@ -22,6 +22,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //routes
     Route::resource('/shipment', \App\Http\Controllers\PackageController::class);
     Route::resource('/driver', \App\Http\Controllers\DriverController::class);
+    Route::resource('/alluser', \App\Http\Controllers\UserController::class);
+    Route::resource('/adminpackage', \App\Http\Controllers\AdminPackageController::class);
     
 });
 

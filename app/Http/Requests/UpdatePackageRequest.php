@@ -26,6 +26,7 @@ class UpdatePackageRequest extends FormRequest
             'image' => 'nullable|string',
             'user_id' => 'exists:users,id',            
             'delivery_status' => 'nullable|string',
+            'driver_name' => 'required|string',
             'delivery_address' => 'required|string',
             'tracking_number' => 'required|string',
             'special_instructions' => 'required|string',

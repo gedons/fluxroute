@@ -5,8 +5,10 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
+use App\Http\Resources\UserResource;
 
-class PackageResource extends JsonResource
+
+class AdminPackagesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,6 +23,7 @@ class PackageResource extends JsonResource
             'title' => $this->title,
             'tracking_number' => $this->tracking_number,
             'delivery_address' => $this->delivery_address,
+            'user' => $this->user,
             'driver_name' => $this->driver_name,                                          
             'delivery_status' => $this->delivery_status,
             'special_instructions' => $this->special_instructions,

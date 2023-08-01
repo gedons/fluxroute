@@ -10,7 +10,7 @@ class Package extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'image', 'title', 'tracking_number', 'delivery_address', 'delivery_status', 'special_instructions', 'payment_reference'];
+    protected $fillable = ['user_id', 'image', 'title', 'tracking_number', 'driver_name', 'delivery_address', 'delivery_status', 'special_instructions', 'payment_reference'];
                     
     public function user()
     {
