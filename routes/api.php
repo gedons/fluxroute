@@ -24,16 +24,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/driver', \App\Http\Controllers\DriverController::class);
     Route::resource('/alluser', \App\Http\Controllers\UserController::class);
     Route::resource('/adminpackage', \App\Http\Controllers\AdminPackageController::class);
+    Route::put('/adminpackage/{product}/update-status', [App\Http\Controllers\AdminPackageController::class, 'updateDeliveryStatus']);    
     
 });
 
-// Route::middleware(['auth:sanctum', 'role:driver'])->prefix('driver')->group(function () {
-//     // Driver dashboard routes here
-// });
-
-// Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
-//     // Admin dashboard routes here
-// });
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/CreateAccount', [AuthController::class, 'CreateAccount']);

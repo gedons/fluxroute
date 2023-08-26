@@ -31,17 +31,17 @@ class AdminPackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Package $shipment)
+    public function show(Package $product)
     {
-       // $users = $package->user->get();
+        //$users = $product->user->first();
 
-        return new AdminPackagesResource($shipment);
+        return new AdminPackagesResource($product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Package $shipment)
+    public function update(Request $request, Package $product)
     {
         //
     }
@@ -49,8 +49,18 @@ class AdminPackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Package $shipment)
+    public function destroy(Package $product)
     {
         //
+    }
+
+    public function updateDeliveryStatus(Package $product, Request $request)
+    {
+         // Update the package status to "pending"
+        $product->delivery_status = 'finished';
+        $product->save();
+
+
+        return response()->json(['message' => 'Delivery status updated successfully']);
     }
 }

@@ -23,7 +23,7 @@ class AdminPackagesResource extends JsonResource
             'title' => $this->title,
             'tracking_number' => $this->tracking_number,
             'delivery_address' => $this->delivery_address,
-            'user' => $this->user,
+            'user' => $this->user,      
             'driver_name' => $this->driver_name,                                          
             'delivery_status' => $this->delivery_status,
             'special_instructions' => $this->special_instructions,
