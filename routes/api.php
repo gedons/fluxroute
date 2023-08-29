@@ -28,6 +28,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
 });
 
-
+Route::get('/package/{trackingNumber}', [App\Http\Controllers\PackageController::class, 'getPackageDetails']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/CreateAccount', [AuthController::class, 'CreateAccount']);

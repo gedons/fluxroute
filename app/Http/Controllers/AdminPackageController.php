@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Resources\AdminPackagesResource;
+use App\Notifications\PackageDelivered;
 
 class AdminPackageController extends Controller
 {
@@ -59,6 +60,8 @@ class AdminPackageController extends Controller
          // Update the package status to "pending"
         $product->delivery_status = 'finished';
         $product->save();
+
+        $product->user->notify(new PackageDelivered($product));
 
 
         return response()->json(['message' => 'Delivery status updated successfully']);

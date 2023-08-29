@@ -91,6 +91,17 @@ class PackageController extends Controller
         return response('', 204);
     }
 
+    public function getPackageDetails($trackingNumber)
+    {
+        $shipment = Package::where('tracking_number', $trackingNumber)->first();
+
+        if ($shipment) {
+            return response()->json(['shipment' => $shipment]);
+        } else {
+            return response()->json(['message' => 'Package not found'], 404);
+        }
+    }   
+
     private function saveImage($image)
     {
         // Check if image is valid base64 string
