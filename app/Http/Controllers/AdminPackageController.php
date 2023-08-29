@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Http\Resources\AdminPackagesResource;
-use App\Notifications\PackageDelivered;
+use App\Mail\PackageDelivered;
+use Illuminate\Support\Facades\Mail;
 
 class AdminPackageController extends Controller
 {
@@ -57,13 +58,13 @@ class AdminPackageController extends Controller
 
     public function updateDeliveryStatus(Package $product, Request $request)
     {
-         // Update the package status to "pending"
+         // Update the package status to "finished"
         $product->delivery_status = 'finished';
         $product->save();
 
-        $product->user->notify(new PackageDelivered($product));
-
-
+        // Send email to the user
+        Mail::to($product->user->email)->send(new PackageDelivered($product));
+        
         return response()->json(['message' => 'Delivery status updated successfully']);
     }
 }
