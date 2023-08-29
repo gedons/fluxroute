@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\URL;
 
 class PackageController extends Controller
 {
@@ -93,9 +94,10 @@ class PackageController extends Controller
 
     public function getPackageDetails($trackingNumber)
     {
-        $shipment = Package::where('tracking_number', $trackingNumber)->first();
+        $shipment = Package::where('tracking_number', $trackingNumber)->with('user')->first();
 
         if ($shipment) {
+            $shipment->image_url = $shipment->image ? URL::to($shipment->image) : null;
             return response()->json(['shipment' => $shipment]);
         } else {
             return response()->json(['message' => 'Package not found'], 404);
