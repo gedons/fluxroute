@@ -1,28 +1,33 @@
+# Use the official PHP image as a base image
 FROM php:8.2-fpm
 
-# Set working directory for the Laravel app
+# Set the working directory in the container
 WORKDIR /var/www/html
 
-# Copy the Laravel source code
-COPY . /fluxroute
-
-# Install PHP dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
     libzip-dev \
+    zip \
     unzip \
-    && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip gd
+    git
 
-# Install Composer
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql zip
+
+# Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install Laravel dependencies
-RUN composer install
+# Copy the Laravel application files into the container
+COPY . .erdy
 
-# Expose port 80 for Laravel
+# Install Composer dependencies
+RUN composer install --no-dev
+
+# Set appropriate permissions for storage and bootstrap cache directories
+RUN chmod -R 775 storage bootstrap/cache
+
+# Expose port 9000 (the default PHP-FPM port)
 EXPOSE 9000
 
-# Start PHP-FPM
+# Start the PHP-FPM server
 CMD ["php-fpm"]
