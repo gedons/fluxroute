@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://fluxroute-front.vercel.app'],
+    'allowed_origins' => ['https://flux-route.vercel.app'],
 
     'allowed_origins_patterns' => [],
 
